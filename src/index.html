@@ -34,10 +34,12 @@
     <body>
         <img src="assets/waveform-blur.png" id="waveform-preview" />
         <div id="waveform"></div>
-        <span id="loading-text">Loading, please wait...</span>
+        <span id="loading-text" class="noselect">Loading, please wait...</span>
         <div id="file-choose-box">
             <span id="choose-file-text">Choose a file</span>
             <input type="button" value="Browse..." id="browse-button" />
+            <span class="small-padding">Difference threshold:</span>
+            <input type="number" step="0.01" id="diff-threshold" />
             <span id="info-text" class="noselect">ℹ️ Info</span>
         </div>
 

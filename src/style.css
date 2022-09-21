@@ -98,3 +98,19 @@ img {
     transform: translate(-50%, -50%);
     z-index: 499;
 }
+
+#diff-threshold {
+    display: table;
+    margin: 30px auto;
+    background: transparent;
+    border: 2px solid #333;
+    color: white;
+    border-radius: 4px;
+}
+
+.small-padding {
+    padding: 0;
+    padding-bottom: 0;
+    display: table;
+    margin: 0 auto;
+}

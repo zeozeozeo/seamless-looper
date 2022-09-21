@@ -8,10 +8,14 @@ var looper, wavesurfer, loops;
 var browseButton = document.getElementById("browse-button");
 var fileChooseBox = document.getElementById("file-choose-box");
 var loadingText = document.getElementById("loading-text");
+var diffThresholdInput = document.getElementById("diff-threshold");
+const DEFAULT_THRESHOLD = 5.5;
+
 function showFileChooseBox() {
     fileChooseBox.style.opacity = 1;
     fileChooseBox.style.display = "block";
-    loadingText.style.display = "block";
+    loadingText.style.display = "none";
+    diffThresholdInput.value = DEFAULT_THRESHOLD;
 }
 showFileChooseBox();
 
@@ -31,24 +35,37 @@ browseButton.addEventListener("click", () => {
 });
 
 function handleBrowse(event) {
+    if (event.target.files.length === 0) {
+        Swal.fire({
+            icon: "error",
+            title: "No file selected",
+        });
+        return;
+    }
+
     showPreview();
-    let reader = new FileReader();
+    loadingText.style.display = "block";
+    var reader = new FileReader();
     reader.onload = (file) => {
         if (typeof wavesurfer != "undefined") {
             wavesurfer.destroy();
         }
-        looper = new Looper(file.target.result, event.target.files[0], () => {
-            loops = looper.analyze();
-            if (loops.length === 0) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Couldn't find any loops!",
-                    text: "Try changing the minimum difference or try an another song.",
-                });
-            } else {
-                initUI();
-            }
-        });
+        looper = new Looper(
+            file.target.result,
+            () => {
+                loops = looper.analyze();
+                if (loops.length === 0) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Couldn't find any loops!",
+                        text: "Try changing the minimum difference or try an another song.",
+                    });
+                } else {
+                    initUI();
+                }
+            },
+            diffThresholdInput.value
+        );
     };
     reader.readAsArrayBuffer(event.target.files[0]);
 }
@@ -153,7 +170,7 @@ document.getElementById("info-text").addEventListener("click", () => {
                     </li>
                     <li>
                         3. For each chunk, iterate through every other chunk
-                        and find their difference. If the difference is smaller than
+                        and find their difference. If the difference is bigger than
                         a certain threshold, skip it.
                     </li>
                     <li>

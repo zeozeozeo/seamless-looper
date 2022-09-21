@@ -9,7 +9,7 @@ if (typeof AudioContext == "function") {
     var audioContext = new webkitAudioContext();
 }
 
-function Looper(data, file, onready, maxDiff = 5.5) {
+function Looper(data, onready, maxDiff) {
     this.blob = new window.Blob([new Uint8Array(data)]);
 
     // convert the audio data into an audiobuffer
@@ -32,7 +32,7 @@ function Looper(data, file, onready, maxDiff = 5.5) {
 
             // XXX: since BeatDetect.js only accepts URL's, we should create
             // an object URL
-            const fileURL = window.URL.createObjectURL(file);
+            const fileURL = window.URL.createObjectURL(this.blob);
             beatDetect
                 .getBeatInfo({
                     url: fileURL,
