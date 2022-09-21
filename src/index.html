@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Seamless Looper</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/6.2.0/wavesurfer.min.js"
+            integrity="sha512-YW1rLJ+bRJi6nmxz2o41EtNaxud/NTCh588hhF4E84hP3UW9nMgx8bDWZQAbvbe1vd+AU8SZw6xDPP/kgziNmA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/6.2.0/plugin/wavesurfer.markers.min.js"
+            integrity="sha512-gEXNQAFTPmANBDJkehmsKkmh2BhD2oJ1IpamzBhHwW3ixy6HoV1oIvM8dX4H3EDcx/T+MyoP2TSyXjfxJbZFtA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/gh/ArthurBeaulieu/BeatDetect.js@1.0.0/dist/BeatDetect.bundle.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.33/dist/sweetalert2.min.js"></script>
+    </head>
+    <body>
+        <img src="assets/waveform-blur.png" id="waveform-preview" />
+        <div id="waveform"></div>
+        <span id="loading-text">Loading, please wait...</span>
+        <div id="file-choose-box">
+            <span id="choose-file-text">Choose a file</span>
+            <input type="button" value="Browse..." id="browse-button" />
+            <span id="info-text" class="noselect">ℹ️ Info</span>
+        </div>
+
+        <script src="audio.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
