@@ -60,6 +60,8 @@ function handleBrowse(event) {
                         title: "Couldn't find any loops!",
                         text: "Try changing the minimum difference or try an another song.",
                     });
+                    showFileChooseBox();
+                    return;
                 } else {
                     initUI();
                 }
